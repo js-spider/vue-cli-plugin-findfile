@@ -32,7 +32,8 @@ const transferFile = (app, options ={})=>{
 }
 
 const onBeforeSetupMiddleware = (api,options) => {
-  // options.devServer.before = require(api.resolve('./mock/mock-server')) // webpack 5 需要改为setupMiddlewares
+  const config = api.resolveWebpackConfig()
+  if(config.mode !== 'development') return
   const { main, editor } = options.pluginOptions?.findFile || {}
   options.configureWebpack = options.configureWebpack || {}
   options.configureWebpack.module = options.configureWebpack.module || { rules:[] }
@@ -41,7 +42,13 @@ const onBeforeSetupMiddleware = (api,options) => {
     options.configureWebpack.module.rules.push({
       test: /\.(j|t)s$/,
       enforce: 'pre',
-      use:path.resolve(__dirname, './loader.js')
+      use:{
+        loader: path.resolve(__dirname, './loader.js'),
+        options: {
+          main: main,
+          editor: editor
+        }
+      }
     })
 
   }

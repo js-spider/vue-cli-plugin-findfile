@@ -1,6 +1,6 @@
 const path = require('path')
 const reg = /(.*\s*=\s*)?new\s+Vue/
-const util = require('loader-utils')
+
 const name = '__TransferFile__'
 
 function babel(source){
@@ -32,7 +32,7 @@ function babel(source){
       const arr = source.split(matched[0])
       const resourceArr = [
         arr[0],
-        `\r\nVue.use(${name}) \r\n`,
+        `\r\nVue.use(${name},{editor: '${options.editor}'}) \r\n`,
         matched[0],
         arr[1]
       ]
