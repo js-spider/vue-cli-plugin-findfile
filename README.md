@@ -23,6 +23,6 @@ const config =  defineConfig({
 })
 
 ```
-可以在 vue.config.js 中添加配置
+可以在 vue.config.js 中添加配置 未配置pluginOptions时则会采用默认值
 - main: 指定入口文件 默认他会根据webpack entry 去判断 
 - editor: 指定编辑器 可选 vscode | webstorm 页面跳转时将通过指定的编辑器打开文件 
