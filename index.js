@@ -14,7 +14,7 @@ const transferFile = (app, options ={})=>{
         editorExec = '"Visual Studio Code"'
         break;
       case 'webstorm':
-        editorExec = 'webstorm1212'
+        editorExec = 'webstorm'
         break;
       default: undefined
     }
